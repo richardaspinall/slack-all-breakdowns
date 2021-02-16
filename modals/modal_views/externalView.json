@@ -1,0 +1,25 @@
+{
+  "options": [
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "value 0"
+      },
+      "value": "value-0"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "value 1"
+      },
+      "value": "value-1"
+    },
+    {
+      "text": {
+        "type": "plain_text",
+        "text": "value 2"
+      },
+      "value": "value-2"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "title": {
+    "type": "plain_text",
+    "text": "My App",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "type": "modal",
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "block_id": "section678",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Pick items from the list"
+      },
+      "accessory": {
+        "action_id": "text1234",
+        "type": "multi_external_select",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select items"
+        },
+        "min_query_length": 3
+      }
+    }
+  ]
+}

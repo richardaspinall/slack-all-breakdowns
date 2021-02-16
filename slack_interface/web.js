@@ -53,9 +53,18 @@ function viewsUpdate(view_id, view) {
   });
 }
 
+// Publish a view
+function viewsPublish(user_id, view) {
+  sendSlackRequest('https://slack.com/api/views.publish', {
+    user_id,
+    view,
+  });
+}
+
 module.exports = {
   chatPostMessage: chatPostMessage,
   viewsOpen: viewsOpen,
   viewsPush: viewsPush,
   viewsUpdate: viewsUpdate,
+  viewsPublish: viewsPublish,
 };

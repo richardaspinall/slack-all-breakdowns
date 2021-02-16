@@ -1,0 +1,23 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "Default view",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Close",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "plain_text",
+        "text": "Please set other views within the '/views' folder",
+        "emoji": true
+      }
+    }
+  ]
+}
