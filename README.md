@@ -40,7 +40,7 @@ Follow the appropriate configuration guide for the feature you want to test. A S
 2. Underneath click **Create New Shortcut** choosing **Global** > Next > Fill out the details (the name and description will appear in Slack and the Callback ID isn't used within this app but is mandatory).
 3. Head to the **Install App** tab and install the app.
 4. In the project folder create a `.env` file within the `/modals` directory. Add a `BOTTOKEN` variable and set it to the **Bot User OAuth Acccess Token** from the "Install App" tab.
-5. In Slack head to any channel and click the lightning bolt next to the input > Search for the name from step 2 and trigger the modal view in: `/modals/modal_views/view1.json` to open
+5. In Slack head to any channel and click the lightning bolt next to the input > Search for the name from step2 and trigger the modal view in: `/modals/modal_views/view1.json` to open
 
 #### Scopes
 
@@ -54,7 +54,7 @@ Follow the appropriate configuration guide for the feature you want to test. A S
 2. In the Slack App configuration, head to the **Event Subscriptions** and toggle **Enable Events**. Add the public request URL of your server with an `/events` end point: `yourserver/events` (this will only verify if the app is running correctly)
 3. Underneath click **Subscribe to bot events** and click **Add Bot User Event** choosing the `app_mention` and `app_home_opened` events
 4. Head to the **Install App** tab and install the app.
-5. In the project create a `.env` file within the `/events` directory and add a `BOTTOKEN` variable setting it to the **Bot User OAuth Acccess Token** from the **Install App** tab in step 4 above.
+5. In the project create a `.env` file within the `/events` directory and add a `BOTTOKEN` variable setting it to the **Bot User OAuth Acccess Token** from the **Install App** tab in step4 above.
 6. To add enviornment variables, the app needs to be restarted: `⌃c` (control c), then `npm run events`
 7. In Slack invite the bot to a channel(enter `/invite @[your-appname]`)
 8. Mention the bot `@[your-appname]` - you should see the event hit your end point
@@ -73,7 +73,7 @@ Follow the appropriate configuration guide for the feature you want to test. A S
 3. Note the _token_ that is generated (you can find this later under the **Basic Information** tab > **App-Level Tokens**)
 4. Click on the **Event Subscriptions** and toggle **Enable Events**
 5. Underneath click **Subscribe to bot events** and click **Add Bot User Event** choosing the `app_mention` event
-6. In the project create a `.env` file within the `/socketmode` directory and add a `SOCKETMODE` variable setting it to the token from the step 3: `SOCKETMODE=xapp-...`
+6. In the project create a `.env` file within the `/socketmode` directory and add a `SOCKETMODE` variable setting it to the token from step3: `SOCKETMODE=xapp-...`
 7. Start the app by running `npm run socketmode`
 8. In Slack invite the bot to a channel(enter `/invite @[your-appname]`)
 9. Mention the bot `@[your-appname]` - you should see the event come through on the socket
