@@ -22,9 +22,9 @@ Tester apps for Slack API features
 ## Requirements
 
 - Node
-- Nodemon
 - NPM
-- NGROK
+- Nodemon (automatically restarts the node application when a file changes. keep in mind to do a full restart when changing enviornment variables! etc)
+- NGROK (creates a public URL and tunnels it to your local host see [resources](https://github.com/richardaspinall/slack-api-feature-breakdowns#resources)
 
 ## Slack app configuration
 
