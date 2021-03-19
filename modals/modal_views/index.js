@@ -38,7 +38,6 @@ try {
 
 try {
   externalView = require('./externalView.json');
-  externalView.callback_id = 'externalView';
 } catch (err) {
   error = true;
 }
