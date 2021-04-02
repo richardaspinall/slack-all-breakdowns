@@ -1,9 +1,13 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
-const WebSocketClient = require('websocket').client;
-const slack = require('../slack_interface/index');
 
-const client = new WebSocketClient();
+const slack = require('../libs/slack_interface/index');
+
+// WebSocket package for websockets support
+const WebSocket = require('websocket').client;
+
+// Create a WebSocket client
+const client = new WebSocket();
 
 client.on('connectFailed', function (error) {
   console.log('Connect Error: ' + error.toString());
@@ -17,30 +21,36 @@ client.on('connect', function (connection) {
   connection.on('close', function () {
     console.log('echo-protocol Connection Closed');
   });
+
+  // Handle events and interactivity down the socket
   connection.on('message', function (message) {
-    let messageObject = JSON.parse(message.utf8Data);
+    const socketMessage = JSON.parse(message.utf8Data);
 
-    console.log(messageObject);
-
-    if (messageObject.envelope_id) {
-      console.log(messageObject.envelope_id);
-      connection.sendUTF(
+    // Send back envelope_id as acknowledgment
+    if (socketMessage.envelope_id) {
+      connection.send(
         JSON.stringify({
-          envelope_id: messageObject.envelope_id,
+          envelope_id: socketMessage.envelope_id,
         })
       );
+      // Log message from the websocket
+      console.log(socketMessage);
+      /*
+        DO SOME COOL STUFF OFF THE BACK OF THE MESSAGE
+      */
+    } else {
+      // Hello from Slack – No need to respond
+      console.log(socketMessage);
     }
-    // if (message.type === 'utf8') {
-    //   console.log("Received: '" + message.utf8Data + "'");
-    // }
   });
 });
 
+// Connection to Slack
+
 (async () => {
   try {
-    const res = await slack.web.connectionOpen();
-    console.log(res.body);
-    client.connect(res.body.url);
+    const webSocketURL = await slack.web.appsConnectionOpen();
+    client.connect(webSocketURL);
   } catch (err) {
     console.error(err);
   }

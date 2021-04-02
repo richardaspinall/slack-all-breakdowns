@@ -91,12 +91,18 @@ function viewsPublish(user_id, view) {
 }
 
 // Opens websocket
-async function connectionOpen() {
-  return await sendAsyncSlackRequest(
+async function appsConnectionOpen() {
+  const res = await sendAsyncSlackRequest(
     'https://slack.com/api/apps.connections.open',
     {},
     process.env.SOCKETTOKEN
   );
+  if (!res.body.url) {
+    console.log('Error: sending request to Slack API failed:');
+    console.log('=============================');
+    throw res.body;
+  }
+  return res.body.url;
 }
 
 module.exports = {
@@ -105,5 +111,5 @@ module.exports = {
   viewsPush: viewsPush,
   viewsUpdate: viewsUpdate,
   viewsPublish: viewsPublish,
-  connectionOpen: connectionOpen,
+  appsConnectionOpen: appsConnectionOpen,
 };
