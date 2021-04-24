@@ -1,4 +1,6 @@
 const path = require('path');
+
+// Super Agent reference: https://github.coventry.ac.uk/askaria/304CEM-LizoFile/blob/master/node_modules/superagent/docs/index.md#attaching-files
 const request = require('superagent');
 
 // Send API call to Slack with SuperAgent
