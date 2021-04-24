@@ -1,4 +1,6 @@
+const path = require('path');
 const request = require('superagent');
+
 // Send API call to Slack with SuperAgent
 function sendSlackRequest(url, payload, token) {
   const httpHeaders = {
@@ -9,6 +11,25 @@ function sendSlackRequest(url, payload, token) {
     .post(url)
     .set(httpHeaders)
     .send(payload)
+    .end((err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(payload);
+        // console.log(res.body);
+      }
+    });
+}
+
+function sendSlackFileRequest(url, file, channel_id, token) {
+  const httpHeaders = {
+    Authorization: `Bearer ${token}`,
+  };
+  request
+    .post(url)
+    .set(httpHeaders)
+    .attach('file', file)
+    .field('channels', channel_id)
     .end((err, res) => {
       if (err) {
         console.log(err);
@@ -90,6 +111,15 @@ function viewsPublish(user_id, view) {
   );
 }
 
+function filesUpload(channel_id, file) {
+  sendSlackFileRequest(
+    'https://slack.com/api/files.upload',
+    file,
+    channel_id,
+    process.env.BOTTOKEN
+  );
+}
+
 // Opens websocket
 async function appsConnectionOpen() {
   const res = await sendAsyncSlackRequest(
@@ -111,5 +141,6 @@ module.exports = {
   viewsPush: viewsPush,
   viewsUpdate: viewsUpdate,
   viewsPublish: viewsPublish,
+  filesUpload: filesUpload,
   appsConnectionOpen: appsConnectionOpen,
 };

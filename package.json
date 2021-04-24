@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "modals": "nodemon modals/app.js",
     "events": "nodemon events/app.js",
-    "socketmode": "nodemon socketmode/app.js"
+    "socketmode": "nodemon socketmode/app.js",
+    "unfurling": "nodemon unfurling/app.js"
   },
   "repository": {
     "type": "git",
