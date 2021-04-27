@@ -51,6 +51,7 @@ client.on('connect', function (connection) {
   try {
     const webSocketURL = await slack.web.appsConnectionOpen();
     client.connect(webSocketURL);
+    console.log(webSocketURL);
   } catch (err) {
     console.error(err);
   }
