@@ -5,6 +5,8 @@ const slack = require('../../libs/slack_interface/index');
 
 const router = express.Router();
 
+const UNFURL_DOMAIN = `${process.env.UNFURL_DOMAIN}/image123`;
+
 router.post('/', async (req, res) => {
   // A challenge param is sent to this end point when enabling events
   if (req.body.challenge) {
@@ -17,22 +19,19 @@ router.post('/', async (req, res) => {
     const ts = req.body.event.message_ts;
 
     // Call remote.add
-    if (
-      req.body.event.links.url ===
-      'https://richardsgottatest.au.ngrok.io/image123'
-    ) {
+    if (req.body.event.links[0].url === UNFURL_DOMAIN) {
       try {
         const response = await slack.web.filesRemoteAdd(
           path.join(__dirname, '../files/slack.jpeg'),
           'Slack Logo',
-          'https://richardsgottatest.au.ngrok.io/image123',
+          UNFURL_DOMAIN,
           'ABC123456789'
         );
         console.log(response.body);
         if (response.body.ok) {
           console.log('OK Request');
           slack.web.chatUnfurl(ts, channel, {
-            'https://richardsgottatest.au.ngrok.io/image123': {
+            [UNFURL_DOMAIN]: {
               blocks: [
                 {
                   type: 'file',
@@ -47,12 +46,6 @@ router.post('/', async (req, res) => {
         console.error(err);
       }
     }
-
-    // slack.web.filesUpload(
-    //   'C01V7NZK58B',
-    //   path.join(__dirname, '../files/slack.jpeg')
-    // );
-    // Call chat.unfurl
   }
 });
 

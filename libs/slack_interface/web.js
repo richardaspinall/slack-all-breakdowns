@@ -129,6 +129,7 @@ async function filesRemoteAdd(preview_image, title, external_url, external_id) {
 }
 
 function chatUnfurl(ts, channel, unfurls) {
+  console.log(unfurls);
   sendSlackRequest(
     'https://slack.com/api/chat.unfurl',
     {
