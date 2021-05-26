@@ -1,4 +1,8 @@
+const path = require('path');
+
+// Super Agent reference: https://github.coventry.ac.uk/askaria/304CEM-LizoFile/blob/master/node_modules/superagent/docs/index.md#attaching-files
 const request = require('superagent');
+
 // Send API call to Slack with SuperAgent
 function sendSlackRequest(url, payload, token) {
   const httpHeaders = {
@@ -13,8 +17,8 @@ function sendSlackRequest(url, payload, token) {
       if (err) {
         console.log(err);
       } else {
-        // console.log(payload);
-        // console.log(res.body);
+        //console.log(payload);
+        //console.log(res.body);
       }
     });
 }
@@ -90,6 +94,53 @@ function viewsPublish(user_id, view) {
   );
 }
 
+function filesUpload(channel_id, file) {
+  const httpHeaders = {
+    Authorization: `Bearer ${process.env.BOTTOKEN}`,
+  };
+  request
+    .post('https://slack.com/api/files.upload')
+    .set(httpHeaders)
+    .attach('file', file)
+    .field('channels', channel_id)
+    .end((err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(payload);
+        // console.log(res.body);
+      }
+    });
+}
+
+async function filesRemoteAdd(preview_image, title, external_url, external_id) {
+  const httpHeaders = {
+    Authorization: `Bearer ${process.env.BOTTOKEN}`,
+  };
+  const res = await request
+    .post('https://slack.com/api/files.remote.add')
+    .set(httpHeaders)
+    .attach('preview_image', preview_image)
+    .field('title', title)
+    .field('external_url', external_url)
+    .field('external_id', external_id);
+
+  return await res;
+}
+
+function chatUnfurl(ts, channel, unfurls) {
+  console.log(unfurls);
+  sendSlackRequest(
+    'https://slack.com/api/chat.unfurl',
+    {
+      ts,
+      channel,
+      unfurls,
+    },
+    process.env.BOTTOKEN
+  );
+}
+
 // Opens websocket
 async function appsConnectionOpen() {
   const res = await sendAsyncSlackRequest(
@@ -111,5 +162,8 @@ module.exports = {
   viewsPush: viewsPush,
   viewsUpdate: viewsUpdate,
   viewsPublish: viewsPublish,
+  filesUpload: filesUpload,
+  filesRemoteAdd: filesRemoteAdd,
+  chatUnfurl: chatUnfurl,
   appsConnectionOpen: appsConnectionOpen,
 };
