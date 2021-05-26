@@ -106,25 +106,39 @@ Follow the appropriate configuration guide for the feature you want to test. A S
 
 ### /unfurling
 
+This tester app uploads a file and then unfurls it when someone enters the corrosponding unfurl URL (`https://YOURUNFURLDOMAIN.com/image123`)
+
 #### Configuration
 
-1. Start the app by running `npm run unfurling`
-2. On your Slack App configuration page, head to the **Event Subscriptions** and toggle **Enable Events**. Add the public request URL of your server with an `/events` end point: `yourserver/events` (this will only verify if the app is running correctly)
-3. Underneath click **Subscribe to bot events** and click **Add Bot User Event** choosing the `link_shared` event
-4. At the bottom of the page, open up **App unfurl domains** and add your public domain (this is what Slack will check and send you an event for if someone links a URL)
-5. Click **Save Changes** at the bottom right
-6. Click on the **Install App** tab and click through the **Install to Workspace** options
-7. In the project code, create a `.env` file and add a `BOTTOKEN` variable: `BOTTOKEN=xoxb-...` and add the token found from step 6.
-8. Add another variable for your domain name: `UNFURL_DOMAIN=https://testingmyunfurls.com`
+1. Head to `unfurling/manifest.json`
+2. Change `features.unfurl_domains` to your domain that your app will unfurl for
+3. Change `settings.event_subscriptions.request_url` to the public server URL hosting your app
+4. Head to https://api.slack.com/apps/new and create an app entering the JSON from `unfurling/manifest.json`.
+5. Install the app by clicking on the **Install App** tab on the left.
+6. Back in the project code, create a `.env` file and add a `BOTTOKEN` variable for the token from step 5.
+7. Add `UNFURLDOMAIN` variable for your domain name
+
+The `.env` file should look like this with appropriate replacements:
+
+```
+#.env
+BOTTOKEN=xoxb-...
+UNFURLDOMAIN=https://YOURUNFURLDOMAIN.com
+```
 
 #### Scopes
 
-- https://api.slack.com/scopes/commands
+- https://api.slack.com/scopes/links:read
+- https://api.slack.com/scopes/links:write
+- https://api.slack.com/scopes/remote_files:write
 
 #### Usage
 
-1. In Slack head to any channel and click the lightning bolt next to the input
-2. Search for the name (added step2 in the **Configuration** steps above) and trigger the modal view to open (which is found here `/modals/modal_views/view1.json`)
+1. Run `npm run unfurling`
+2. In Slack invite the bot to a channel(enter `/invite @breakdown-unfurling`)
+3. Enter `https://YOURUNFURLDOMAIN.com/image123`
+
+**Note:** `image123` is hardcoded in `unfurling/controllers/unfurling-controller.js`)
 
 ---
 

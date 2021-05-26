@@ -1,0 +1,45 @@
+{
+    "_metadata": {
+        "major_version": 1,
+        "minor_version": 1
+    },
+    "display_information": {
+        "name": "breakdown-unfurling",
+        "description": "Tester app for breaking down unfurls",
+        "background_color": "#2e2e30"
+    },
+    "features": {
+        "app_home": {
+            "home_tab_enabled": true,
+            "messages_tab_enabled": true,
+            "messages_tab_read_only_enabled": false
+        },
+        "bot_user": {
+            "display_name": "breakdown-unfurling",
+            "always_online": false
+        },
+        "unfurl_domains": [
+            "YOURUNFURLDOMAIN.com"
+        ]
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "links:read",
+                "links:write",
+                "remote_files:write"
+            ]
+        }
+    },
+    "settings": {
+        "event_subscriptions": {
+            "request_url": "https://YOURPUBLICSERVERNAME.com/events",
+            "bot_events": [
+                "link_shared"
+            ]
+        },
+        "org_deploy_enabled": false,
+        "socket_mode_enabled": false,
+        "is_hosted": false
+    }
+}
