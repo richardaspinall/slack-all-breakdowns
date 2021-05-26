@@ -1,4 +1,4 @@
-# Slack API Feature Breakdowns
+# Slack All (Feature) Breakdowns
 
 > Started: Aug 2020
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-Tester apps for Slack API features
+Single repository for tester apps to breakdown Slack API features
 
 ## Goals
 
