@@ -42,7 +42,7 @@ function chatPostMessage(channel, message) {
       channel: channel,
       blocks: message,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
@@ -54,7 +54,7 @@ function viewsOpen(trigger_id, view) {
       trigger_id,
       view,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
@@ -66,7 +66,7 @@ function viewsPush(trigger_id, view) {
       trigger_id,
       view,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
@@ -78,7 +78,7 @@ function viewsUpdate(view_id, view) {
       view_id,
       view,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
@@ -90,13 +90,13 @@ function viewsPublish(user_id, view) {
       user_id,
       view,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
 function filesUpload(channel_id, file) {
   const httpHeaders = {
-    Authorization: `Bearer ${process.env.BOTTOKEN}`,
+    Authorization: `Bearer ${process.env.BOT_TOKEN}`,
   };
   request
     .post('https://slack.com/api/files.upload')
@@ -115,7 +115,7 @@ function filesUpload(channel_id, file) {
 
 async function filesRemoteAdd(preview_image, title, external_url, external_id) {
   const httpHeaders = {
-    Authorization: `Bearer ${process.env.BOTTOKEN}`,
+    Authorization: `Bearer ${process.env.BOT_TOKEN}`,
   };
   const res = await request
     .post('https://slack.com/api/files.remote.add')
@@ -137,7 +137,7 @@ function chatUnfurl(ts, channel, unfurls) {
       channel,
       unfurls,
     },
-    process.env.BOTTOKEN
+    process.env.BOT_TOKEN
   );
 }
 
@@ -146,7 +146,7 @@ async function appsConnectionOpen() {
   const res = await sendAsyncSlackRequest(
     'https://slack.com/api/apps.connections.open',
     {},
-    process.env.SOCKETTOKEN
+    process.env.SOCKET_TOKEN
   );
   if (!res.body.url) {
     console.log('Error: sending request to Slack API failed:');

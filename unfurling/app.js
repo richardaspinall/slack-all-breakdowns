@@ -9,7 +9,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/events', unfurlingController);
+app.use('/slack/events', unfurlingController);
 
 app.post('/', (req, res) => {
   res.sendStatus(200);

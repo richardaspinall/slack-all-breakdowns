@@ -4,6 +4,12 @@ const modalViews = require('../modal_views');
 
 const router = express.Router();
 
+function logger(payload, view) {
+  console.log(`-----------${view} PAYLOAD INCOMING----------`);
+  console.log(payload);
+  console.log(`-----------PAYLOAD END----------`);
+}
+
 router.post('/', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const interactionType = payload.type;
@@ -20,26 +26,24 @@ router.post('/', (req, res) => {
       break;
     case 'block_actions':
       res.sendStatus(200);
-      // console.log('-----------PAYLOAD INCOMING----------');
-      // console.log(payload);
-      // console.log('-----------PAYLOAD END----------');
-      // TODO: Need to add logic for if view2 and view3 doesn't exist
       if (payload.view.callback_id === 'view1') {
-        // Add new view to stack:
+        logger(payload, 'view1');
+        // Add new view to stack either through `viewsPush` or `viewsUpdate`:
         slack.web.viewsPush(triggerId, modalViews.view2);
-        // Update current view from action. (comment above line and uncomment below )
         // slack.web.viewsUpdate(payload.view.id, modalViews.view2);
       } else if (payload.view.callback_id === 'view2') {
-        // Add new view to stack:
+        logger(payload, 'view2');
+
+        // Add new view to stack either through `viewsPush` or `viewsUpdate`:
         slack.web.viewsPush(triggerId, modalViews.view3);
-        // Update current view from action. (comment above line and uncomment below )
         // slack.web.viewsUpdate(payload.view.id, modalViews.view3);
       }
 
       break;
     case 'view_submission':
-      console.log(payload.view.state.values);
       if (modalViews.submissionView) {
+        logger(payload, 'submission');
+
         if (payload.view.callback_id === 'submissionView') {
           res.send({
             response_action: 'clear',
@@ -59,7 +63,8 @@ router.post('/', (req, res) => {
   }
 });
 
-router.post('/updateview', (req, res) => {
+// Manually update a view
+router.post('/update', (req, res) => {
   res.sendStatus(200);
   slack.web.viewsUpdate('V01D07HF7BP', modalViews.view2);
 });

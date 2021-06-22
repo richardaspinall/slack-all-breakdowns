@@ -1,0 +1,87 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "My App",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "conversations_select",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select a conversation",
+            "emoji": true
+          },
+          "action_id": "actionId-0"
+        },
+        {
+          "type": "channels_select",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select a channel",
+            "emoji": true
+          },
+          "action_id": "actionId-1"
+        },
+        {
+          "type": "users_select",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select a user",
+            "emoji": true
+          },
+          "action_id": "actionId-2"
+        },
+        {
+          "type": "static_select",
+          "placeholder": {
+            "type": "plain_text",
+            "text": "Select an item",
+            "emoji": true
+          },
+          "options": [
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "*this is plain_text text*",
+                "emoji": true
+              },
+              "value": "value-0"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "*this is plain_text text*",
+                "emoji": true
+              },
+              "value": "value-1"
+            },
+            {
+              "text": {
+                "type": "plain_text",
+                "text": "*this is plain_text text*",
+                "emoji": true
+              },
+              "value": "value-2"
+            }
+          ],
+          "action_id": "actionId-3"
+        }
+      ]
+    }
+  ]
+}

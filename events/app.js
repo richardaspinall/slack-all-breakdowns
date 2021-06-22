@@ -9,7 +9,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/events', eventsController);
+app.use('/slack/events', eventsController);
 
 app.post('/', (req, res) => {
   res.sendStatus(200);
