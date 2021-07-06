@@ -2,19 +2,26 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const express = require('express');
 
-const unfurlingController = require('./controllers/unfurling-controller');
+const verifySignature = require('../utils/verify-signature.js');
+
+const unfurlController = require('./controllers/unfurl-controller');
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Verify signature in middleware for urlencoded or json requests
+app.use(express.urlencoded({ extended: true, verify: verifySignature }));
+app.use(express.json({ verify: verifySignature }));
 
-app.use('/slack/events', unfurlingController);
-
-app.post('/', (req, res) => {
-  res.sendStatus(200);
+// Verify challenge or send request to controller
+app.use('/slack/events', (req, res) => {
+  if (req.body.challenge) {
+    console.log('success');
+    res.send({ challenge: req.body.challenge });
+    return;
+  }
+  unfurlController(req, res);
 });
-// Start server
+
 app.listen(3000, () => {
   console.log('Server has started');
 });
