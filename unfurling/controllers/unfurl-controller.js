@@ -7,11 +7,6 @@ const router = express.Router();
 const RESOURCE_URL = `${process.env.UNFURL_DOMAIN}/image123`;
 
 router.post('/', async (req, res) => {
-  // Verify signature
-  if (!req.valid) {
-    return res.sendStatus(404);
-  }
-
   res.sendStatus(200);
 
   const channel = req.body.event.channel;

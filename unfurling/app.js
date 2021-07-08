@@ -14,10 +14,12 @@ app.use(express.json({ verify: verifySignature }));
 
 // Verify challenge or send request to controller
 app.use('/slack/events', (req, res) => {
+  // Verify signature
+  if (!req.valid) {
+    return res.sendStatus(404);
+  }
   if (req.body.challenge) {
-    console.log('success');
-    res.send({ challenge: req.body.challenge });
-    return;
+    return res.send({ challenge: req.body.challenge });
   }
   unfurlController(req, res);
 });
