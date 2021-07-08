@@ -4,7 +4,7 @@ const slack = require('../../libs/slack_interface/index');
 
 const router = express.Router();
 
-const RESOURCE_URL = `${process.env.UNFURL_DOMAIN}/image123`;
+const RESOURCE_URL = `${process.env.UNFURL_DOMAIN}/slack.jpg`;
 
 router.post('/', async (req, res) => {
   res.sendStatus(200);
@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
   if (req.body.event.links[0].url === RESOURCE_URL) {
     try {
       const response = await slack.web.filesRemoteAdd(
-        path.join(__dirname, '../files/slack.jpeg'),
+        path.join(__dirname, '../files/slack.jpg'),
         'Slack Logo',
         RESOURCE_URL,
         'ABC123456789'
