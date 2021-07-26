@@ -1,6 +1,6 @@
 const express = require('express');
-const slack = require('../../libs/slack_interface/index');
-const modalViews = require('../modal_views');
+const slack = require('../libs/slack_interface/index');
+const modalViews = require('./views');
 
 const router = express.Router();
 
