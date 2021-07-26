@@ -2,7 +2,7 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const express = require('express');
 
-const eventsController = require('./controllers/events-controller');
+const eventsController = require('./events-controller');
 
 const app = express();
 
