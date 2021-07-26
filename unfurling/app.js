@@ -4,7 +4,7 @@ const express = require('express');
 
 const verifySignature = require('../utils/verify-signature.js');
 
-const unfurlController = require('./controllers/unfurl-controller');
+const unfurlsController = require('./unfurls-controller');
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use('/slack/events', (req, res) => {
   if (req.body.challenge) {
     return res.send({ challenge: req.body.challenge });
   }
-  unfurlController(req, res);
+  unfurlsController(req, res);
 });
 
 app.listen(3000, () => {
