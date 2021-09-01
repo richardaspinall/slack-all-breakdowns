@@ -8,6 +8,11 @@ try {
   defaultView = require('./defaultView.json');
   defaultView.callback_id = 'defaultView';
 
+  submissionView = require('./submissionView.json');
+  submissionView.callback_id = 'submissionView';
+
+  externalView = require('./externalView.json');
+
   view1 = require('./view1.json');
   view1.callback_id = 'view1';
 
@@ -17,10 +22,6 @@ try {
   view3 = require('./view3.json');
   view3.callback_id = 'view3';
 
-  submissionView = require('./submissionView.json');
-  submissionView.callback_id = 'submissionView';
-
-  externalView = require('./externalView.json');
 } catch (err) {
   console.log(
     "---------------\nOne or more views have not been set. Views can be set in the '/views' folder\n---------------"

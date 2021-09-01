@@ -70,7 +70,7 @@ router.post('/update', (req, res) => {
 });
 
 router.post('/externalsource', (req, res) => {
-  res.json(modalViews.externalView);
+  res.status(200).json(modalViews.externalView);
 });
 
 module.exports = router;

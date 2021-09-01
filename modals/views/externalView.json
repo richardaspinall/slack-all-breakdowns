@@ -3,21 +3,21 @@
     {
       "text": {
         "type": "plain_text",
-        "text": "value 0"
+        "text": "*this is plain_text text*"
       },
       "value": "value-0"
     },
     {
       "text": {
         "type": "plain_text",
-        "text": "value 1"
+        "text": "*this is plain_text text*"
       },
       "value": "value-1"
     },
     {
       "text": {
         "type": "plain_text",
-        "text": "value 2"
+        "text": "*this is plain_text text*"
       },
       "value": "value-2"
     }
