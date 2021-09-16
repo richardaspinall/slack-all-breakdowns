@@ -46,6 +46,19 @@ function chatPostMessage(channel, message) {
   );
 }
 
+// Send an ephemeral message
+function chatPostEphemeral(channel, message, user) {
+  sendSlackRequest(
+    'https://slack.com/api/chat.postEphemeral',
+    {
+      channel: channel,
+      blocks: message,
+      user: user,
+    },
+    process.env.BOT_TOKEN
+  );
+}
+
 // Open a modal
 function viewsOpen(trigger_id, view) {
   sendSlackRequest(
@@ -143,11 +156,7 @@ function chatUnfurl(ts, channel, unfurls) {
 
 // Opens websocket
 async function appsConnectionOpen() {
-  const res = await sendAsyncSlackRequest(
-    'https://slack.com/api/apps.connections.open',
-    {},
-    process.env.SOCKET_TOKEN
-  );
+  const res = await sendAsyncSlackRequest('https://slack.com/api/apps.connections.open', {}, process.env.SOCKET_TOKEN);
   if (!res.body.url) {
     console.log('Error: sending request to Slack API failed:');
     console.log('=============================');
@@ -158,6 +167,7 @@ async function appsConnectionOpen() {
 
 module.exports = {
   chatPostMessage: chatPostMessage,
+  chatPostEphemeral: chatPostEphemeral,
   viewsOpen: viewsOpen,
   viewsPush: viewsPush,
   viewsUpdate: viewsUpdate,
