@@ -81,6 +81,9 @@ Follow the appropriate configuration guide for the feature you want to test. A S
 
 ### /socketmode
 
+Hosted here:
+https://glitch.com/edit/#!/false-peridot-band
+
 #### Configuration
 
 1. On your Slack App configuration page, head to the **Socket Mode** tab and toggle **Enable Socket Mode**
