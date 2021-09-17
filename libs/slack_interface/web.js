@@ -17,8 +17,8 @@ function sendSlackRequest(url, payload, token) {
       if (err) {
         console.log(err);
       } else {
-        //console.log(payload);
-        //console.log(res.body);
+        console.log(payload);
+        console.log(res.body);
       }
     });
 }

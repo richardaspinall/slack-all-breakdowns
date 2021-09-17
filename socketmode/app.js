@@ -35,9 +35,23 @@ client.on('connect', function (connection) {
       );
       // Log message from the websocket
       console.log(socketMessage);
+      const event = socketMessage.payload.event;
       /*
         DO SOME COOL STUFF OFF THE BACK OF THE MESSAGE
       */
+      if (event.type == 'member_joined_channel') {
+        console.log('Member joined the channel');
+        const blocks = [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: '*Hi there! Welcome to the channel*',
+            },
+          },
+        ];
+        slack.web.chatPostEphemeral(event.channel, blocks, event.user);
+      }
     } else {
       // Hello from Slack – No need to respond
       console.log(socketMessage);
