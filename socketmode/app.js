@@ -15,6 +15,7 @@ client.on('connectFailed', function (error) {
 
 client.on('connect', function (connection) {
   console.log('WebSocket Client Connected');
+
   connection.on('error', function (error) {
     console.log('Connection Error: ' + error.toString());
   });
@@ -43,6 +44,17 @@ client.on('connect', function (connection) {
       console.log(socketMessage);
     }
   });
+
+  // Ping Pong (automatically handled in the background)
+  connection.on('pong', function () {
+    console.log('pong');
+  });
+
+  connection.on('ping', function () {
+    console.log('ping');
+  });
+
+  connection.ping();
 });
 
 // Connection to Slack
