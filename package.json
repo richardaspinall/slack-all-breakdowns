@@ -8,6 +8,7 @@
     "modals": "nodemon modals/app.js",
     "events": "nodemon events/app.js",
     "socketmode": "nodemon socketmode/app.js",
+    "rtm": "nodemon rtm/app.js",
     "unfurling": "nodemon unfurling/app.js"
   },
   "repository": {

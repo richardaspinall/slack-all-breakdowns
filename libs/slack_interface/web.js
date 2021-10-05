@@ -165,6 +165,16 @@ async function appsConnectionOpen() {
   return res.body.url;
 }
 
+async function rtmConnect() {
+  const res = await sendAsyncSlackRequest('https://slack.com/api/rtm.connect', {}, process.env.BOT_TOKEN);
+  if (!res.body.url) {
+    console.log('Error: sending request to Slack API failed:');
+    console.log('=============================');
+    throw res.body;
+  }
+  return res.body.url;
+}
+
 module.exports = {
   chatPostMessage: chatPostMessage,
   chatPostEphemeral: chatPostEphemeral,
@@ -176,4 +186,5 @@ module.exports = {
   filesRemoteAdd: filesRemoteAdd,
   chatUnfurl: chatUnfurl,
   appsConnectionOpen: appsConnectionOpen,
+  rtmConnect: rtmConnect,
 };
