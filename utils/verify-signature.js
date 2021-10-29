@@ -5,8 +5,6 @@ module.exports = function verifySignature(req, res, buf) {
   // Concatenate the raw body, timestamp and version number together
   const sig_basestring = 'v0:' + req.headers['x-slack-request-timestamp'] + ':' + buf.toString();
 
-  console.log(buf.toString());
-
   // Create Hmac
   const my_signature = 'v0=' + crypto.createHmac('sha256', signing_secret).update(sig_basestring).digest('hex');
 
