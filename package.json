@@ -9,7 +9,8 @@
     "events": "nodemon events/app.js",
     "socketmode": "nodemon socketmode/app.js",
     "rtm": "nodemon rtm/app.js",
-    "unfurling": "nodemon unfurling/app.js"
+    "unfurling": "nodemon unfurling/app.js",
+    "shortcuts": "nodemon shortcuts/app.js"
   },
   "repository": {
     "type": "git",
