@@ -11,6 +11,7 @@ router.post('/', async (req, res) => {
 
   const channel = req.body.event.channel;
   const ts = req.body.event.message_ts;
+  // console.log(req.body);
 
   // Unfurls when the link is posted into the message input
   // As per: https://api.slack.com/methods/chat.unfurl#responses

@@ -17,6 +17,7 @@ app.use('/slack/events', (req, res) => {
   if (!req.valid) {
     return res.sendStatus(404);
   }
+
   res.status(200).send();
   const payload = JSON.parse(req.body.payload);
   console.log(payload);

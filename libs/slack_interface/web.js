@@ -149,6 +149,7 @@ function chatUnfurl(ts, channel, unfurls) {
       ts,
       channel,
       unfurls,
+      // user_auth_required: 1,
     },
     process.env.BOT_TOKEN
   );
