@@ -1,0 +1,33 @@
+{
+  "type": "home",
+  "blocks": [
+    {
+      "type": "input",
+      "block_id": "my_block",
+      "element": {
+        "type": "plain_text_input",
+        "action_id": "my_action"
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Say something nice!"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Test block with users select"
+      },
+      "accessory": {
+        "type": "users_select",
+        "placeholder": {
+          "type": "plain_text",
+          "text": "Select a user",
+          "emoji": true
+        },
+        "action_id": "users_select-action"
+      }
+    }
+  ]
+}
