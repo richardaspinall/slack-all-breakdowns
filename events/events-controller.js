@@ -21,6 +21,10 @@ router.post('/', (req, res) => {
         console.log(req.body.event);
         slack.web.viewsPublish(req.body.event.user, views);
         break;
+      case 'team_join':
+        console.log(req.body.event);
+        console.log(req.body.event.user.profile);
+        break;
       default:
         console.log(`------------------\nEvent not handled:\n------------------`);
         console.log(req.body);
